@@ -47,5 +47,19 @@ body {
     list-style-type: none;
 }
 
+.thumbs-item {
+    overflow: hidden;
+    width: 500px;
+    border: 1px solid black;
+}
+.image-thumbnail {
+    float: left;
+    width: 300px;
+    border: 1px solid red;
+}
+
+.image-info {
+    border: 1px solid green;
+}
 .map-container,#gmap_canvas{height:350px;width: 100%;}
 #gmap_canvas img{max-width:none!important;background:none!important}

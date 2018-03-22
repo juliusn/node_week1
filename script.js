@@ -88,6 +88,7 @@ function update() {
   thumbsList.innerHTML='';
   picArray.map((pic) => {
     const img = document.createElement('img');
+    img.setAttribute('class', 'image-thumbnail');
     img.src = pic.thumbnail;
     img.addEventListener('click', (e) => {
       const modal = new Modal(document.querySelector('.modal-overlay'), pic);
@@ -104,13 +105,16 @@ function update() {
     date.appendChild(document.createTextNode('Date: ' + dateReadable));
 
     const thumbsListItem = document.createElement('li');
-    const thumbInfo = document.createElement('ul');
-    thumbInfo.appendChild(title);
-    thumbInfo.appendChild(details);
-    thumbInfo.appendChild(date);
-
+    thumbsListItem.setAttribute('class', 'thumbs-item');
+    const imageInfoList = document.createElement('ul');
+    const imageInfoWrapper = document.createElement('div');
+    imageInfoWrapper.setAttribute('class', 'image-info');
+    imageInfoList.appendChild(title);
+    imageInfoList.appendChild(details);
+    imageInfoList.appendChild(date);
+    imageInfoWrapper.appendChild(imageInfoList);
     thumbsListItem.appendChild(img);
-    thumbsListItem.appendChild(thumbInfo);
+    thumbsListItem.appendChild(imageInfoWrapper);
     thumbsList.appendChild(thumbsListItem);
   });
 }

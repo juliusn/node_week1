@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h5>Sort images by:</h5>
+<select class="sort" disabled></select>
+<div id="thumbsContainer">
+    <ul class="thumbsList">
+
+    </ul>
+</div>
+<div class="is-hidden modal-overlay">
+    <div class="modal">
+        <span class="button-close">×</span>
+        <img src="" class="image-display"/>
+        <div class="map-container" style='overflow:hidden;'>
+            <div id='gmap_canvas' style=''></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="script.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQ-OUacKHJy7WLbTZjASjEtLiEDik7wY&callback=initMap">
+</script>
+</body>
+</html>

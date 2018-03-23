@@ -2,8 +2,9 @@ body {
     /*margin: 40px auto;*/
     max-width: 650px;
     line-height: 1.6;
-    font-size: 18px;
-    color: #444;
+    font-size: 14px;
+    background-color: #282828;
+    color: rgb(203, 203, 203);
     padding: 0 10px
 }
 
@@ -50,16 +51,39 @@ body {
 .thumbs-item {
     overflow: hidden;
     width: 500px;
-    border: 1px solid black;
+    margin-top: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
 }
+
 .image-thumbnail {
     float: left;
-    width: 300px;
-    border: 1px solid red;
+    width: 200px;
+    margin-right: 20px;
+    border-radius: 12px;
 }
 
 .image-info {
-    border: 1px solid green;
+
 }
-.map-container,#gmap_canvas{height:350px;width: 100%;}
-#gmap_canvas img{max-width:none!important;background:none!important}
+
+.image-info ul {
+    list-style-type: none;
+}
+
+.image-display {
+    width: 100%;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.map-container, #gmap_canvas {
+    height: 150px;
+    width: 100%;
+}
+
+#gmap_canvas img {
+    max-width: none !important;
+    background: none !important
+}

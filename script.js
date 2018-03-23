@@ -1,5 +1,9 @@
 let picArray;
 let map;
+let sort;
+let update;
+let initMap;
+
 const thumbsList = document.querySelector('.thumbsList');
 const request = new Request('pictures.json');
 const select = document.querySelector('.sort');
@@ -46,7 +50,6 @@ class Modal {
       map: map,
     });
 
-    console.log(pic);
     img.src = pic.original;
     closeButton.addEventListener('click', this.close.bind(this));
     overlay.addEventListener('click', e => {
@@ -65,7 +68,7 @@ class Modal {
   }
 }
 
-function initMap() {
+initMap = () => {
   const uluru = {lat: -25.363, lng: 131.044};
   map = new google.maps.Map(document.querySelector('.map-container'), {
     zoom: 4,
@@ -78,15 +81,19 @@ function initMap() {
   });
 }
 
-function sort() {
+sort = () => {
   const selected = select.options[select.selectedIndex].value;
   picArray.sort((a, b) => a[selected] > b[selected]);
   update();
 }
 
-function update() {
+update = () => {
   thumbsList.innerHTML='';
   picArray.map((pic) => {
+
+    const thumbsListItem = document.createElement('li');
+    thumbsListItem.setAttribute('class', 'thumbs-item');
+
     const img = document.createElement('img');
     img.setAttribute('class', 'image-thumbnail');
     img.src = pic.thumbnail;
@@ -95,26 +102,34 @@ function update() {
       window.openModal = modal.open.bind(modal);
       window.openModal();
     });
+    const a = document.createElement('a');
+    a.appendChild(img);
+    thumbsListItem.appendChild(a);
+
+    const imageInfoList = document.createElement('ul');
 
     const title = document.createElement('li');
     title.appendChild(document.createTextNode('Title: ' + pic.title));
+    imageInfoList.appendChild(title);
+
+    const category = document.createElement('li');
+    category.appendChild(document.createTextNode('Category: ' + pic.category));
+    imageInfoList.appendChild(category);
+
     const details = document.createElement('li');
     details.appendChild(document.createTextNode('Details: ' + pic.details));
+    imageInfoList.appendChild(details);
+
     const date = document.createElement('li');
     const dateReadable = new Date(pic.time.replace(' ', 'T')).toDateString();
     date.appendChild(document.createTextNode('Date: ' + dateReadable));
+    imageInfoList.appendChild(date);
 
-    const thumbsListItem = document.createElement('li');
-    thumbsListItem.setAttribute('class', 'thumbs-item');
-    const imageInfoList = document.createElement('ul');
     const imageInfoWrapper = document.createElement('div');
     imageInfoWrapper.setAttribute('class', 'image-info');
-    imageInfoList.appendChild(title);
-    imageInfoList.appendChild(details);
-    imageInfoList.appendChild(date);
     imageInfoWrapper.appendChild(imageInfoList);
-    thumbsListItem.appendChild(img);
     thumbsListItem.appendChild(imageInfoWrapper);
+
     thumbsList.appendChild(thumbsListItem);
   });
 }

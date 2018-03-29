@@ -6,8 +6,8 @@ const app = express();
 const router = express.Router();
 const path = require('path');
 const mongoose = require('mongoose');
-// const multer = require('multer');
-// const upload = multer({dest: 'public/original'});
+const multer = require('multer');
+const upload = multer({dest: 'public/original'});
 let testConnect;
 app.use(express.static('public'));
 app.use('/modules', express.static('node_modules'));
@@ -17,9 +17,6 @@ app.use('/modules', express.static('node_modules'));
   category: String,
 };*/
 
-router.get('/', (req, res) => {
-  console.log('Path: ' + path.basename(__dirname));
-});
 
 app.get('/', (req, res) => {
   console.log('req: ' + req);
@@ -33,9 +30,6 @@ mongoose.connect(
       app.listen(3000);
     });
 
-testConnect = () => {
-  mongoose.connect('mongodb://localhost/cat').then(() => {
-    console.log('test server connected successfully!');
-    app.listen(3000);
-  });
-};
+app.post('/profile', upload.array(), (req, res, next) => {
+  console.log(req.body);
+});

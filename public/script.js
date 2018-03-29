@@ -3,6 +3,7 @@ let map;
 let sort;
 let update;
 let initMap;
+let upload;
 
 const thumbsList = document.querySelector('.thumbsList');
 const request = new Request('pictures.json');
@@ -80,6 +81,14 @@ class UploadModal {
       }
     });
   }
+
+  open() {
+    this.overlay.classList.remove('is-hidden');
+  }
+
+  close() {
+    this.overlay.classList.add('is-hidden');
+  }
 }
 
 initMap = () => {
@@ -112,7 +121,7 @@ update = () => {
     img.setAttribute('class', 'image-thumbnail');
     img.src = pic.thumbnail;
     img.addEventListener('click', (e) => {
-      const modal = new DisplayModal(document.querySelector('.modal-overlay'), pic);
+      const modal = new DisplayModal(document.querySelector('#display-overlay'), pic);
       window.openModal = modal.open.bind(modal);
       window.openModal();
     });
@@ -146,4 +155,10 @@ update = () => {
 
     thumbsList.appendChild(thumbsListItem);
   });
-}
+};
+
+upload = () => {
+  const modal = new UploadModal(document.querySelector('#upload-overlay'));
+  window.openModal = modal.open.bind(modal);
+  window.openModal();
+};

@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<button class="button_upload">Upload Images</button>
+
+<button type="button" class="button_upload" onclick="upload()">Upload Images</button>
 <h5>Sort images by:</h5>
 <select class="sort" disabled></select>
+
 <div id="thumbsContainer">
     <ul class="thumbsList">
 
     </ul>
 </div>
-<div class="is-hidden modal-overlay">
+
+<div class="is-hidden modal-overlay" id="display-overlay">
     <div class="modal">
         <span class="button-close">×</span>
         <img src="" class="image-display"/>
@@ -22,17 +27,28 @@
         </div>
     </div>
 </div>
-<div class="is-hidden modal-overlay">
+
+<div class="is-hidden modal-overlay" id="upload-overlay">
     <div class="modal">
         <span class="button-close">×</span>
-        <form class="upload-form">
-
+        <form class="upload-form" action="upload">
+            Category:
+            <input type="text" name="category">
+            Title:
+            <input type="text" name="title">
+            Description:
+            <input type="text" name="description">
+            <input type="button" name="choose-file">
+            <input type="image" name="image">
+            <input type="submit" value="Submit">
         </form>
     </div>
 </div>
+
 <script type="text/javascript" src="script.js"></script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaQ-OUacKHJy7WLbTZjASjEtLiEDik7wY&callback=initMap">
 </script>
+
 </body>
 </html>

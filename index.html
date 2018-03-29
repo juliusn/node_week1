@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<button class="button_upload">Upload Images</button>
 <h5>Sort images by:</h5>
 <select class="sort" disabled></select>
 <div id="thumbsContainer">
@@ -16,6 +17,17 @@
     <div class="modal">
         <span class="button-close">×</span>
         <img src="" class="image-display"/>
+        <div class="map-container" style='overflow:hidden;'>
+            <div id='gmap_canvas' style=''></div>
+        </div>
+    </div>
+</div>
+<div class="is-hidden modal-overlay">
+    <div class="modal">
+        <span class="button-close">×</span>
+        <form class="upload-form">
+            
+        </form>
         <div class="map-container" style='overflow:hidden;'>
             <div id='gmap_canvas' style=''></div>
         </div>

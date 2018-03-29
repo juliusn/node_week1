@@ -34,7 +34,7 @@ fetch(request).then((response) => {
   update();
 });
 
-class Modal {
+class DisplayModal {
   constructor(overlay, pic) {
     this.overlay = overlay;
     const closeButton = overlay.querySelector('.button-close');
@@ -68,6 +68,20 @@ class Modal {
   }
 }
 
+class UploadModal {
+  constructor(overlay) {
+    this.overlay = overlay;
+    const closeButton = overlay.querySelector('.button-close');
+    const form = overlay.querySelector('.upload-form');
+    closeButton.addEventListener('click', this.close.bind(this));
+    overlay.addEventListener('click', e => {
+      if (e.srcElement.id === this.overlay.id) {
+        this.close();
+      }
+    });
+  }
+}
+
 initMap = () => {
   const uluru = {lat: -25.363, lng: 131.044};
   map = new google.maps.Map(document.querySelector('.map-container'), {
@@ -79,13 +93,13 @@ initMap = () => {
     position: uluru,
     map: map,
   });
-}
+};
 
 sort = () => {
   const selected = select.options[select.selectedIndex].value;
   picArray.sort((a, b) => a[selected] > b[selected]);
   update();
-}
+};
 
 update = () => {
   thumbsList.innerHTML='';
@@ -98,7 +112,7 @@ update = () => {
     img.setAttribute('class', 'image-thumbnail');
     img.src = pic.thumbnail;
     img.addEventListener('click', (e) => {
-      const modal = new Modal(document.querySelector('.modal-overlay'), pic);
+      const modal = new DisplayModal(document.querySelector('.modal-overlay'), pic);
       window.openModal = modal.open.bind(modal);
       window.openModal();
     });
